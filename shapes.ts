@@ -1,10 +1,23 @@
 class Shape {
-    private width: number;
-    private height: number;
+    width: number;
+    height!: number;
+    drawFill: boolean;
 
-    constructor(w: number, h: number) {
+    constructor(w: number, h: number, fill: boolean, chars: DrawType) {
         this.width = w;
-        this.height = h;
+        this.drawFill = fill;
+    }
+
+    draw() {
+
+    }
+}
+
+class Square extends Shape {
+
+    constructor(w: number, h: number, fill: boolean, chars: DrawType) {
+        super(w, h, fill, chars);
+        this.width = this.height = w;
     }
 
     draw() {
@@ -12,12 +25,24 @@ class Shape {
     }
 }
 
-class Square extends Shape{
-    constructor(w:number,h:number) {
-        super(w, h);
+
+class Rectangle extends Shape {
+    constructor(w: number, h: number, fill: boolean, chars: DrawType) {
+        super(w, h, fill, chars);
     }
 
     draw() {
-        
+
+    }
+}
+
+
+class Triangle extends Shape {
+    constructor(w: number, h: number, fill: boolean, chars: DrawType) {
+        super(w, h, fill, chars);
+    }
+
+    draw() {
+
     }
 }
