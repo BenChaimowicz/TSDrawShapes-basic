@@ -6,4 +6,3 @@ enum DrawType {
     ascending,
     descending,
 }
-
