@@ -18,8 +18,8 @@ class Shape {
     }
     shapeSpecs(loc) {
         loc.innerHTML += '</br>';
-        loc.innerHTML += this.name + ' Perimiter: ' + this.perimiter.toString() + '</br>';
-        loc.innerHTML += this.name + ' Area: ' + this.area.toString();
+        loc.innerHTML += this.name + ' Perimiter: ' + this.perimiter.toFixed(2) + '</br>';
+        loc.innerHTML += this.name + ' Area: ' + this.area.toFixed(2);
     }
 }
 class Square extends Shape {
@@ -48,6 +48,24 @@ class Square extends Shape {
                 else {
                     loc.innerHTML += '&nbsp&nbsp';
                 }
+            }
+            loc.innerHTML += '</br>';
+        }
+        this.shapeSpecs(loc);
+    }
+    drawAscending(loc) {
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 1; j <= this.width; j++) {
+                loc.innerHTML += j + '&nbsp';
+            }
+            loc.innerHTML += '</br>';
+        }
+        this.shapeSpecs(loc);
+    }
+    drawDescending(loc) {
+        for (let i = 0; i < this.height; i++) {
+            for (let j = this.width; j >= 1; j--) {
+                loc.innerHTML += j + '&nbsp';
             }
             loc.innerHTML += '</br>';
         }
@@ -86,6 +104,24 @@ class Rectangle extends Shape {
         }
         this.shapeSpecs(loc);
     }
+    drawAscending(loc) {
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 1; j <= this.width; j++) {
+                loc.innerHTML += j + '&nbsp';
+            }
+            loc.innerHTML += '</br>';
+        }
+        this.shapeSpecs(loc);
+    }
+    drawDescending(loc) {
+        for (let i = 0; i < this.height; i++) {
+            for (let j = this.width; j >= 1; j--) {
+                loc.innerHTML += j + '&nbsp';
+            }
+            loc.innerHTML += '</br>';
+        }
+        this.shapeSpecs(loc);
+    }
 }
 class Triangle extends Shape {
     constructor(w, h, fill, chars) {
@@ -100,6 +136,38 @@ class Triangle extends Shape {
         for (let i = 0; i <= this.height; i++) {
             for (let j = 0; j < i; j++) {
                 loc.innerHTML += '* ';
+            }
+            loc.innerHTML += '</br>';
+        }
+        this.shapeSpecs(loc);
+    }
+    drawStarBorder(loc) {
+        for (let i = 0; i <= this.height; i++) {
+            for (let j = 0; j < i; j++) {
+                if (i == 0 || j == 0 || i == this.height || j == this.width || j == i - 1) {
+                    loc.innerHTML += '* ';
+                }
+                else {
+                    loc.innerHTML += '&nbsp&nbsp';
+                }
+            }
+            loc.innerHTML += '</br>';
+        }
+        this.shapeSpecs(loc);
+    }
+    drawAscending(loc) {
+        for (let i = 0; i <= this.height; i++) {
+            for (let j = 1; j <= i; j++) {
+                loc.innerHTML += j + '&nbsp';
+            }
+            loc.innerHTML += '</br>';
+        }
+        this.shapeSpecs(loc);
+    }
+    drawDescending(loc) {
+        for (let i = this.height; i >= 1; i--) {
+            for (let j = this.width; j >= i; j--) {
+                loc.innerHTML += j + '&nbsp';
             }
             loc.innerHTML += '</br>';
         }
