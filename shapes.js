@@ -1,30 +1,37 @@
 "use strict";
 class Shape {
-    constructor(w, h, fill, chars) {
+    constructor(w, fill, chars) {
+        this.loc = spantry;
         this.width = w;
         this.drawFill = fill;
-        switch (chars) {
+        this.chars = chars;
+    }
+    autoDraw() {
+        switch (this.chars) {
             case DrawType.star:
-                this.char = '*';
+                this.drawFill == true ? this.drawStarFill(this.loc) : this.drawStarBorder(this.loc);
                 break;
             case DrawType.ascending:
-            case DrawType.descending:
-                this.char = '1';
-                this.drawFill = true;
+                this.drawAscending(this.loc);
                 break;
-            default:
+            case DrawType.descending:
+                this.drawDescending(this.loc);
                 break;
         }
     }
-    shapeSpecs(loc) {
-        loc.innerHTML += '</br>';
-        loc.innerHTML += this.name + ' Perimiter: ' + this.perimiter.toFixed(2) + '</br>';
-        loc.innerHTML += this.name + ' Area: ' + this.area.toFixed(2);
+    drawStarFill(loc) { }
+    drawStarBorder(loc) { }
+    drawAscending(loc) { }
+    drawDescending(loc) { }
+    shapeSpecs() {
+        this.loc.innerHTML += '</br>';
+        this.loc.innerHTML += this.name + ' Perimiter: ' + this.perimiter.toFixed(2) + '</br>';
+        this.loc.innerHTML += this.name + ' Area: ' + this.area.toFixed(2);
     }
 }
 class Square extends Shape {
-    constructor(w, h, fill, chars) {
-        super(w, h, fill, chars);
+    constructor(w, fill, chars) {
+        super(w, fill, chars);
         this.name = 'Square';
         this.width = this.height = w;
         this.perimiter = this.width * 4;
@@ -37,7 +44,7 @@ class Square extends Shape {
             }
             loc.innerHTML += "</br>";
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
     drawStarBorder(loc) {
         for (let i = 0; i < this.height; i++) {
@@ -51,7 +58,7 @@ class Square extends Shape {
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
     drawAscending(loc) {
         for (let i = 0; i < this.height; i++) {
@@ -60,7 +67,7 @@ class Square extends Shape {
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
     drawDescending(loc) {
         for (let i = 0; i < this.height; i++) {
@@ -69,12 +76,12 @@ class Square extends Shape {
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 }
 class Rectangle extends Shape {
     constructor(w, h, fill, chars) {
-        super(w, h, fill, chars);
+        super(w, fill, chars);
         this.name = 'Rectangle';
         this.width = w;
         this.height = h;
@@ -88,7 +95,7 @@ class Rectangle extends Shape {
             }
             loc.innerHTML += "</br>";
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
     drawStarBorder(loc) {
         for (let i = 0; i < this.height; i++) {
@@ -102,7 +109,7 @@ class Rectangle extends Shape {
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
     drawAscending(loc) {
         for (let i = 0; i < this.height; i++) {
@@ -111,7 +118,7 @@ class Rectangle extends Shape {
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
     drawDescending(loc) {
         for (let i = 0; i < this.height; i++) {
@@ -120,12 +127,12 @@ class Rectangle extends Shape {
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 }
 class Triangle extends Shape {
-    constructor(w, h, fill, chars) {
-        super(w, h, fill, chars);
+    constructor(w, fill, chars) {
+        super(w, fill, chars);
         this.name = 'Triangle';
         this.height = this.width = w;
         this.yeter = Math.sqrt(Math.pow(this.width, 2) + Math.pow(this.height, 2));
@@ -139,7 +146,7 @@ class Triangle extends Shape {
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
     drawStarBorder(loc) {
         for (let i = 0; i <= this.height; i++) {
@@ -153,7 +160,7 @@ class Triangle extends Shape {
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
     drawAscending(loc) {
         for (let i = 0; i <= this.height; i++) {
@@ -162,7 +169,7 @@ class Triangle extends Shape {
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
     drawDescending(loc) {
         for (let i = this.height; i >= 1; i--) {
@@ -171,6 +178,6 @@ class Triangle extends Shape {
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 }

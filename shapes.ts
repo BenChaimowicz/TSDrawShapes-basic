@@ -3,37 +3,48 @@ class Shape {
     width: number;
     height: number;
     drawFill: boolean;
-    char: string;
+    chars: DrawType;
     fontSize: string;
     perimiter: number;
     area: number;
+    loc: HTMLSpanElement = spantry;
 
-    constructor(w: number, h: number, fill: boolean, chars: DrawType) {
+    constructor(w: number, fill: boolean, chars: DrawType) {
         this.width = w;
         this.drawFill = fill;
-        switch (chars) {
+        this.chars = chars;
+    }
+
+    autoDraw() {
+        switch (this.chars) {
             case DrawType.star:
-                this.char = '*';
+                this.drawFill == true ? this.drawStarFill(this.loc) : this.drawStarBorder(this.loc);
                 break;
             case DrawType.ascending:
-            case DrawType.descending:
-                this.char = '1';
-                this.drawFill = true;
+                this.drawAscending(this.loc);
                 break;
-            default:
+            case DrawType.descending:
+                this.drawDescending(this.loc);
                 break;
         }
     }
-    shapeSpecs(loc: HTMLSpanElement) {
-        loc.innerHTML += '</br>';
-        loc.innerHTML += this.name + ' Perimiter: ' + this.perimiter.toFixed(2) + '</br>';
-        loc.innerHTML += this.name + ' Area: ' + this.area.toFixed(2);
+
+    drawStarFill(loc: HTMLSpanElement) { }
+    drawStarBorder(loc: HTMLSpanElement) { }
+    drawAscending(loc: HTMLSpanElement) { }
+    drawDescending(loc: HTMLSpanElement) { }
+    
+    shapeSpecs() {
+        this.loc.innerHTML += '</br>';
+        this.loc.innerHTML += this.name + ' Perimiter: ' + this.perimiter.toFixed(2) + '</br>';
+        this.loc.innerHTML += this.name + ' Area: ' + this.area.toFixed(2);
     }
 }
 
+
 class Square extends Shape {
-    constructor(w: number, h: number, fill: boolean, chars: DrawType) {
-        super(w, h, fill, chars);
+    constructor(w: number, fill: boolean, chars: DrawType) {
+        super(w,fill, chars);
         this.name = 'Square';
         this.width = this.height = w;
         this.perimiter = this.width * 4;
@@ -47,46 +58,46 @@ class Square extends Shape {
             }
             loc.innerHTML += "</br>";
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 
     drawStarBorder(loc: HTMLSpanElement) {
-        for (let i = 0; i < this.height; i++){
-            for (let j = 0; j < this.width; j++){
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 0; j < this.width; j++) {
                 if (i == 0 || j == 0 || i == this.height - 1 || j == this.width - 1) {
                     loc.innerHTML += '* ';
-                } else { loc.innerHTML += '&nbsp&nbsp';}
+                } else { loc.innerHTML += '&nbsp&nbsp'; }
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 
-    drawAscending(loc:HTMLSpanElement) {
-        for (let i = 0; i < this.height; i++){
-            for (let j = 1; j <= this.width; j++){
+    drawAscending(loc: HTMLSpanElement) {
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 1; j <= this.width; j++) {
                 loc.innerHTML += j + '&nbsp';
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 
     drawDescending(loc: HTMLSpanElement) {
-        for (let i = 0; i < this.height; i++){
-            for (let j = this.width; j >= 1; j--){
+        for (let i = 0; i < this.height; i++) {
+            for (let j = this.width; j >= 1; j--) {
                 loc.innerHTML += j + '&nbsp';
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 }
 
 
 class Rectangle extends Shape {
     constructor(w: number, h: number, fill: boolean, chars: DrawType) {
-        super(w, h, fill, chars);
+        super(w,fill, chars);
         this.name = 'Rectangle';
         this.width = w;
         this.height = h;
@@ -101,37 +112,37 @@ class Rectangle extends Shape {
             }
             loc.innerHTML += "</br>";
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
     drawStarBorder(loc: HTMLSpanElement) {
-        for (let i = 0; i < this.height; i++){
-            for (let j = 0; j < this.width; j++){
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 0; j < this.width; j++) {
                 if (i == 0 || j == 0 || i == this.height - 1 || j == this.width - 1) {
                     loc.innerHTML += '* ';
-                } else { loc.innerHTML += '&nbsp&nbsp';}
+                } else { loc.innerHTML += '&nbsp&nbsp'; }
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
-    drawAscending(loc:HTMLSpanElement) {
-        for (let i = 0; i < this.height; i++){
-            for (let j = 1; j <= this.width; j++){
+    drawAscending(loc: HTMLSpanElement) {
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 1; j <= this.width; j++) {
                 loc.innerHTML += j + '&nbsp';
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 
     drawDescending(loc: HTMLSpanElement) {
-        for (let i = 0; i < this.height; i++){
-            for (let j = this.width; j >= 1; j--){
+        for (let i = 0; i < this.height; i++) {
+            for (let j = this.width; j >= 1; j--) {
                 loc.innerHTML += j + '&nbsp';
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 }
 
@@ -140,8 +151,8 @@ class Triangle extends Shape {
 
     yeter: number;
 
-    constructor(w: number, h: number, fill: boolean, chars: DrawType) {
-        super(w, h, fill, chars);
+    constructor(w: number, fill: boolean, chars: DrawType) {
+        super(w,fill, chars);
         this.name = 'Triangle';
         this.height = this.width = w;
         this.yeter = Math.sqrt(Math.pow(this.width, 2) + Math.pow(this.height, 2));
@@ -150,44 +161,44 @@ class Triangle extends Shape {
     }
 
     drawStarFill(loc: HTMLDivElement) {
-        for (let i = 0; i <= this.height; i++){
-            for (let j = 0; j < i; j++){
+        for (let i = 0; i <= this.height; i++) {
+            for (let j = 0; j < i; j++) {
                 loc.innerHTML += '* ';
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 
     drawStarBorder(loc: HTMLSpanElement) {
-        for (let i = 0; i <= this.height; i++){
-            for (let j = 0; j < i; j++){
-                if (i == 0 || j == 0 || i == this.height || j == this.width || j== i-1) {
+        for (let i = 0; i <= this.height; i++) {
+            for (let j = 0; j < i; j++) {
+                if (i == 0 || j == 0 || i == this.height || j == this.width || j == i - 1) {
                     loc.innerHTML += '* ';
-                } else { loc.innerHTML += '&nbsp&nbsp';}
+                } else { loc.innerHTML += '&nbsp&nbsp'; }
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 
     drawAscending(loc: HTMLSpanElement) {
-        for (let i = 0; i <= this.height; i++){
-            for (let j = 1; j <= i; j++){
+        for (let i = 0; i <= this.height; i++) {
+            for (let j = 1; j <= i; j++) {
                 loc.innerHTML += j + '&nbsp';
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 
     drawDescending(loc: HTMLSpanElement) {
-        for (let i = this.height; i >=1; i--){
-            for (let j = this.width; j >= i; j--){
+        for (let i = this.height; i >= 1; i--) {
+            for (let j = this.width; j >= i; j--) {
                 loc.innerHTML += j + '&nbsp';
             }
             loc.innerHTML += '</br>';
         }
-        this.shapeSpecs(loc);
+        this.shapeSpecs();
     }
 }
