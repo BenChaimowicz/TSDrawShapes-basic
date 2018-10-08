@@ -1,7 +1,7 @@
 // UI Functions
 
 function ShapeCreator() {
-    let shapeChoice = prompt('Shape Drawer </br> Select shape to draw: </br> 1. Square 2. Rectangle 3. Triangle');
+    let shapeChoice = prompt('Shape Drawer \n Select shape to draw: \n 1. Square 2. Rectangle 3. Triangle');
     let whArr: number[];
     let dtArr: any[];
 
@@ -48,7 +48,7 @@ function sizePrompt(hreq: boolean = false): number[] {
 }
 
 function drawPrompt():any[] {
-    let drawChoice: number = parseInt(prompt('Choose Drawing Style: </br> 1. **** -Fill </br> 2. *   * -Only borders </br> 3. 1234 </br> 4. 4321'));
+    let drawChoice: number = parseInt(prompt('Choose Drawing Style: \n 1. **** -Fill \n 2. *   * -Only borders \n 3. 1234 \n 4. 4321'));
     switch (drawChoice) {
         case 1:
             return [true, DrawType.star];

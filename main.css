@@ -23,7 +23,7 @@ h1{
     margin: auto;
 
     background-color: whitesmoke;
-    border: 1px black solid;
+    border: 5px black solid;
 }
 #spantry{
     display: flex;
