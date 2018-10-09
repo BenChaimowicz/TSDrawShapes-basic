@@ -5,4 +5,4 @@ pageContainer.style.height = window.innerHeight.toString();
 
 // Inits
 
-ShapeCreator();
+// ShapeCreator();

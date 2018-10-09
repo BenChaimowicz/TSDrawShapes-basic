@@ -1,5 +1,6 @@
 <!DOCTYPE <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,17 +8,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
+
 <body>
-    <div id="pageContainer">
+    <header>
         <h1>Shape Drawing Project</h1>
+    </header>
+    <div id="pageContainer">
+        <div id="menuDiv">
+            <div id="shapeDiv">
+                <h2>Choose Shape:</h2>
+                <input type="radio" name="shape" value="Square" checked="checked">Square<br>
+                <input type="radio" name="shape" value="Rectangle">Rectangle<br>
+                <input type="radio" name="shape" value="Triangle">Triangle<br>
+            </div>
+            <div id="sizeDiv">
+                <h2>Choose Size:</h2>
+                <label for="widthInput">Width:</label>
+                <input type="number"  name="width" id="widthInput" min="1" value="1"> <br>
+                
+                <label for="heightInput">Height:</label>
+                <input type="number"  name="height" id="heightInput" min="1" value="1">  <br>
+            </div>
+            <div id="styleDiv">
+                <h2>Choose Style:</h2>
+                <input type="radio" name="style" value="starFill" checked="checked">****<br>
+                <input type="radio" name="style" value="starBorder">*   *<br>
+                <input type="radio" name="style" value="ascending">1234<br>
+                <input type="radio" name="style" value="descending">4321<br>   
+            </div>
+            <button id="drawBtn" onclick="">Draw!</button>
+        </div>
         <div id="drawBox">
             <span id="spantry"></span>
         </div>
     </div>
     <script src="elements.js"></script>
-    <script src="drawtypes.js"></script> 
-    <script src="shapes.js"></script> 
+    <script src="drawtypes.js"></script>
+    <script src="shapes.js"></script>
     <script src="UIFunctions.js"></script>
-    <script src="main.js"></script> 
+    <script src="main.js"></script>
 </body>
+
 </html>
